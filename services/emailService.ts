@@ -22,11 +22,11 @@ if (!canAttempt()) {
     return "Circuit breaker open";
   }
 
-  // Try Provider A
   try {
     const success = await retry(() => sendWithProviderA(email));
     if (success) {
       sentEmailIds.add(email.id);
+      console.log("Email sent successfully by Provider A.");
       statusMap.set(email.id, "Sent by Provider A");
       resetBreaker();
       return "Sent by Provider A";
@@ -38,7 +38,6 @@ if (!canAttempt()) {
     recordFailure(); 
   }
 
-  // Fallback to Provider B
   try {
     const fallbackSuccess = await retry(() => sendWithProviderB(email));
     if (fallbackSuccess) {
