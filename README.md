@@ -63,9 +63,16 @@ POST /email/send
 Request body:
 ```json
 {
-  "to": "recipient@example.com",
-  "subject": "Email Subject",
-  "body": "Email content"
+  "id": "email-12345",
+  "to": "user@example.com",
+  "subject": "Testing Retry and Fallback",
+  "body": "This email demonstrates the service features."
+}
+```
+Response:
+```json
+{
+    "status": "Sent by Provider A"
 }
 ```
 
